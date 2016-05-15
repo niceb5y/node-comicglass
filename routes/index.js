@@ -12,14 +12,14 @@ router.get('/*', function(req, res, next) {
       return {
         isDirectory: true,
         title: filename,
-        path: encodeURIComponent(path + filename).replace("%2F", "/"),
+        path: encodeURIComponent(path + filename).split("%2F").join("/"),
         date: file.mtime.getTime()
       }
     } else {
       return {
         isDirectory: false,
         title: filename,
-        path: encodeURIComponent(path + filename).replace("%2F", "/"),
+        path: encodeURIComponent(path + filename).split("%2F").join("/"),
         size: file.size,
         date: file.mtime.getTime()
       }
