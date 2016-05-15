@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= path %></title>
+  </head>
+  <body>
+    <h3><%= path %></h3>
+    <% for (var i = 0; i < files.length; ++i) { %>
+    <% if (files[i].isDirectory) { %>
+    <li type="circle">
+      <a href="<%= files[i].path %>"
+      booktitle="<%= files[i].title %>"
+      bookdate="<%= files[i].date %>"
+      >
+        <%= files[i].title %>
+      </a>
+    </li>
+    <% } else { %>
+    <li>
+      <a href="<%= files[i].path %>"
+      booktitle="<%= files[i].title %>"
+      booksize="<%= files[i].size %>"
+      bookdate="<%= files[i].date %>"
+      bookfile="true"
+      >
+        <%= files[i].title %>
+      </a>
+    </li>
+    <% } %>
+    <% } %>
+  </body>
+</html>
