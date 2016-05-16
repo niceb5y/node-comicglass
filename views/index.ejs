@@ -8,8 +8,8 @@
     <% for (var i = 0; i < files.length; ++i) { %>
     <% if (files[i].isDirectory) { %>
     <li type="circle">
-      <a href="<%= files[i].path %>"
-      booktitle="<%= files[i].title %>"
+      <a href="<%- files[i].path %>"
+      booktitle="<%- files[i].title %>"
       bookdate="<%= files[i].date %>"
       >
         <%= files[i].title %>
@@ -17,8 +17,8 @@
     </li>
     <% } else { %>
     <li>
-      <a href="<%= files[i].path %>"
-      booktitle="<%= files[i].title %>"
+      <a href="<%- files[i].path %>"
+      booktitle="<%- files[i].title %>"
       booksize="<%= files[i].size %>"
       bookdate="<%= files[i].date %>"
       bookfile="true"
