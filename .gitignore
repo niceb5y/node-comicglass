@@ -44,4 +44,5 @@ jspm_packages
 user.htpasswd
 
 # Comics Data
-public
+public/*
+!public/.keep
