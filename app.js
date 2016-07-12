@@ -23,13 +23,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 // You should generate "user.htpasswd" file for specify username & password
 // If you want to know more about user.htpasswd, see "user.htpasswd.sample" 
 // 
-var auth = require('http-auth');
-var basic = auth.basic({
-  realm: "Private Page",
-  file: path.join(__dirname, "user.htpasswd")
-});
-app.use(auth.connect(basic));
-
+// var auth = require('http-auth');
+// var basic = auth.basic({
+//   realm: "Private Page",
+//   file: path.join(__dirname, "user.htpasswd")
+// });
+// app.use(auth.connect(basic));
+// 
 
 app.use('/', routes);
 
