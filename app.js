@@ -4,42 +4,41 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var auth = require('http-auth');
-var basic = auth.basic({
-	realm: "Private Page",
-	file: path.join(__dirname, "user.htpasswd") // gevorg:gpass, Sarah:testpass 
-});
 
 var routes = require('./routes/index');
 
 var app = express();
 
-// view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(auth.connect(basic));
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+// Uncomment if you wanna use HTTP authentication
+// You should generate "user.htpasswd" file for specify username & password
+// If you want to know more about user.htpasswd, see "user.htpasswd.sample" 
+// 
+var auth = require('http-auth');
+var basic = auth.basic({
+  realm: "Private Page",
+  file: path.join(__dirname, "user.htpasswd")
+});
+app.use(auth.connect(basic));
+
 
 app.use('/', routes);
 
-// catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
-// error handlers
-
-// development error handler
-// will print stacktrace
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
@@ -50,8 +49,6 @@ if (app.get('env') === 'development') {
   });
 }
 
-// production error handler
-// no stacktraces leaked to user
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error', {
