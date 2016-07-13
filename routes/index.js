@@ -13,7 +13,7 @@ router.get('/*', function(req, res, next) {
         isDirectory: true,
         title: filename,
         path: encodeURIComponent(path + filename).split("%2F").join("/"),
-        date: file.mtime.getTime()
+        date: (file.mtime.getTime() / 1000)
       }
     } else {
       return {
@@ -21,7 +21,7 @@ router.get('/*', function(req, res, next) {
         title: filename,
         path: encodeURIComponent(path + filename).split("%2F").join("/"),
         size: file.size,
-        date: file.mtime.getTime()
+        date: (file.mtime.getTime() / 1000)
       }
     }
   }
