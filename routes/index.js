@@ -28,7 +28,10 @@ router.get('/*', function(req, res, next) {
   
   function matchExt(file) {
     if (file.isDirectory) return true;
-    const supportedExt = [".gif", ".png", ".jpg", ".jpeg", ".tif", ".tiff", ".zip", ".rar", ".cbz", ".cbr", ".bmp", ".pdf", ".cgt"];
+    const supportedExt = [".gif", ".png", ".jpg", ".jpeg", ".tif", ".tiff", ".zip", ".rar", ".cbz", ".cbr", ".bmp", ".pdf", ".cgt", ".webp"];
+    if (file.title.startsWith('.')) {
+      return false;
+    }
     for (var i = 0; i < supportedExt.length; ++i) {
       if (file.title.endsWith(supportedExt[i])) {
         return true;
