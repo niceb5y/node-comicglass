@@ -27,11 +27,11 @@ router.get('/*', function(req, res, next) {
   }
   
   function matchExt(file) {
-    if (file.isDirectory) return true;
-    const supportedExt = [".gif", ".png", ".jpg", ".jpeg", ".tif", ".tiff", ".zip", ".rar", ".cbz", ".cbr", ".bmp", ".pdf", ".cgt", ".webp"];
     if (file.title.startsWith('.')) {
       return false;
     }
+    if (file.isDirectory) return true;
+    const supportedExt = [".gif", ".png", ".jpg", ".jpeg", ".tif", ".tiff", ".zip", ".rar", ".cbz", ".cbr", ".bmp", ".pdf", ".cgt", ".webp"];
     for (var i = 0; i < supportedExt.length; ++i) {
       if (file.title.endsWith(supportedExt[i])) {
         return true;
